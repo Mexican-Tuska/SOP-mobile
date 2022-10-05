@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">fuck</string>
+
+    //Страница авторизации
+    <string name="title_main_page">Вход</string>
+    <string name="email_main_page">Электронная почта</string>
+    <string name="password_main_page">Пароль</string>
+    <string name="signup_main_text">Войти</string>
+    <string name="question_main_page">Нет аккаунта?</string>
+    <string name="url_main_page">Зарегистрируйтесь</string>
+
+    //1 страница регистрации
+    <string name="title_registration1_page">Регистрация</string>
+    <string name="surname_reg1_page">Фамилия</string>
+    <string name="name_reg1_page">Имя</string>
+    <string name="midname_reg1_page">Отчество</string>
+    <string name="group_reg1_page">Группа</string>
+    <string name="subgroup_reg1_page">Подгруппа</string>
+    <string name="button_reg1_page">Продолжить регистрацию</string>
+    <string name="question_reg1_page">Есть аккаунт?</string>
+    <string name="url_reg1_page">Войдите</string>
+
+    //2 страница регистрации
+    <string name="title_registration2_page">Подтверждение регистрации</string>
+    <string name="ad_registration2_page">Необходимо подтверить свою электронную почту, перейдя по ссылке в полученном письме</string>
+    <string name="password_confirm_reg_page2">Повторите пароль</string>
+    <string name="login_reg2_page">Зарегистрироваться</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //Заголовки страниц
+    <string name="title_home">Главная</string>
+    <string name="title_schedule">Расписание</string>
+    <string name="title_attendance">Посещение</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_SOP">СОП</string>
+
+</resources>

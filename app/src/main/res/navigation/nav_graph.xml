@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signup_pageFragment">
+
+    <fragment
+        android:id="@+id/signup_pageFragment"
+        android:name="com.example.fuck.screens.signup_pageFragment"
+        android:label="fragment_signup_page"
+        tools:layout="@layout/fragment_signup_page" >
+        <action
+            android:id="@+id/action_signup_pageFragment_to_reg1Fragment"
+            app:destination="@id/reg1Fragment" />
+        <action
+            android:id="@+id/action_signup_pageFragment_to_pages"
+            app:destination="@id/pages" />
+    </fragment>
+    <fragment
+        android:id="@+id/reg1Fragment"
+        android:name="com.example.fuck.screens.reg1Fragment"
+        android:label="fragment_reg1"
+        tools:layout="@layout/fragment_reg1" >
+        <action
+            android:id="@+id/action_reg1Fragment_to_reg2Fragment"
+            app:destination="@id/reg2Fragment" />
+        <action
+            android:id="@+id/action_reg1Fragment_to_signup_pageFragment2"
+            app:destination="@id/signup_pageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reg2Fragment"
+        android:name="com.example.fuck.screens.reg2Fragment"
+        android:label="fragment_reg2"
+        tools:layout="@layout/fragment_reg2" >
+        <action
+            android:id="@+id/action_reg2Fragment_to_signup_pageFragment"
+            app:destination="@id/signup_pageFragment" />
+    </fragment>
+    <navigation android:id="@+id/pages"
+        app:startDestination="@id/homeFragment">
+        <fragment
+            android:id="@+id/attendanceFragment"
+            android:name="com.example.fuck.screens.attendance.attendanceFragment"
+            android:label="fragment_attendance"
+            tools:layout="@layout/fragment_attendance" />
+        <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.example.fuck.screens.home.homeFragment"
+            android:label="fragment_home"
+            tools:layout="@layout/fragment_home" />
+        <fragment
+            android:id="@+id/scheduleFragment"
+            android:name="com.example.fuck.screens.schedule.scheduleFragment"
+            android:label="fragment_schedule"
+            tools:layout="@layout/fragment_schedule" />
+        <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.example.fuck.screens.profile.profileFragment"
+            android:label="fragment_profile"
+            tools:layout="@layout/fragment_profile" >
+            <action
+                android:id="@+id/action_profileFragment_to_signup_pageFragment"
+                app:destination="@id/signup_pageFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/sopFragment"
+            android:name="com.example.fuck.screens.sop.sopFragment"
+            android:label="fragment_sop"
+            tools:layout="@layout/fragment_sop" />
+    </navigation>
+</navigation>
