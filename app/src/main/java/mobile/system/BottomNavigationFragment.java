@@ -1,25 +1,27 @@
 package mobile.system;
 
-import static androidx.navigation.Navigation.findNavController;
-
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
+import mobile.system.databinding.FragmentBottomNavigationBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +61,34 @@ public class BottomNavigationFragment extends Fragment {
         return fragment;
     }
 
+
+    FragmentBottomNavigationBinding binding;
+
+    private class Listener implements NavigationBarView.OnItemSelectedListener {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId())
+            {
+                case R.id.navigation_home:
+                    replaceFragment(new HomeFragment());
+                    break;
+                case R.id.navigation_sop:
+                    replaceFragment(new SopFragment());
+                    break;
+                case R.id.navigation_attendance:
+                    replaceFragment(new AttendanceFragment());
+                    break;
+                case R.id.navigation_schedule:
+                    replaceFragment(new ScheduleFragment());
+                    break;
+                case R.id.navigation_profile:
+                    replaceFragment(new ProfileFragment());
+                    break;
+            }
+            return false;
+        }
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +96,17 @@ public class BottomNavigationFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        replaceFragment(new HomeFragment()); // Works
+
+        // Not Works
+        binding = FragmentBottomNavigationBinding.inflate(getLayoutInflater());
+
+        binding.bottomNavView.setOnItemSelectedListener(new Listener());
+
+
+        // Valitsya parasha:
+        /*BottomNavigationView nav = getView().findViewById(R.id.bottom_nav_view);
+        nav.setOnItemSelectedListener(new Listener());*/
     }
 
     @Override
@@ -106,5 +147,13 @@ public class BottomNavigationFragment extends Fragment {
 
         NavigationUI.setupActionBarWithNavController(context, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    private void replaceFragment(Fragment fragment)
+    {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
     }
 }
