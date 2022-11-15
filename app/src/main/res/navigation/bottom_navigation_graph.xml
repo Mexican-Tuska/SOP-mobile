@@ -3,31 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_navigation_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/navigation_sop">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="mobile.system.HomeFragment"
+        android:id="@+id/navigation_home"
+        android:name="mobile.system.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/sopFragment"
-        android:name="mobile.system.SopFragment"
+        android:id="@+id/navigation_sop"
+        android:name="mobile.system.ui.sop.SopFragment"
         android:label="fragment_sop"
         tools:layout="@layout/fragment_sop" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="mobile.system.ProfileFragment"
+        android:id="@+id/navigation_profile"
+        android:name="mobile.system.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/scheduleFragment"
-        android:name="mobile.system.ScheduleFragment"
+        android:id="@+id/navigation_schedule"
+        android:name="mobile.system.ui.schedule.ScheduleFragment"
         android:label="fragment_schedule"
         tools:layout="@layout/fragment_schedule" />
     <fragment
-        android:id="@+id/attendanceFragment"
-        android:name="mobile.system.AttendanceFragment"
+        android:id="@+id/navigation_attendance"
+        android:name="mobile.system.ui.attendance.AttendanceFragment"
         android:label="fragment_attendance"
         tools:layout="@layout/fragment_attendance" />
 </navigation>

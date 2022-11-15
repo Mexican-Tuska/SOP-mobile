@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SopFragment">
+    tools:context=".ui.sop.SopFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="2"
+        android:text="1"
         android:textSize="180sp" />
 
 </FrameLayout>
