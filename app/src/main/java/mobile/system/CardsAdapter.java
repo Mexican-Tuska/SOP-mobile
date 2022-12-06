@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import java.util.List;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHolder> {
@@ -68,4 +69,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHol
             mScore = itemView.findViewById(R.id.card_score);
         }
     }
+
+
 }
+
