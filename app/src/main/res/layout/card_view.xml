@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="120dp">
@@ -25,4 +25,47 @@
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-</LinearLayout>
+</LinearLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="360dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:background="@color/back_blocks_day"
+        android:backgroundTint="@color/back_blocks_day"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/card_FIO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Это ФИО препода"
+            android:textAlignment="center"
+            android:textColor="@color/basic_text_day"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/card_predmet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:text="Это предмет"
+            android:textAlignment="center"
+            android:textColor="@color/basic_text_day" />
+
+        <TextView
+            android:id="@+id/card_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:text="Это рейтинг"
+            android:textAlignment="center"
+            android:textColor="@color/basic_text_day" />
+
+    </LinearLayout>

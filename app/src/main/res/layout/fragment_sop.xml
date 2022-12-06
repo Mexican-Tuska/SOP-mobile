@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<!--<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.sop.SopFragment">
+    tools:context=".ui.sop.SopFragment">-->
 
     <!--progress bar for loading indicator-->
-    <ProgressBar
+<!--    <ProgressBar
         android:id="@+id/idPB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,4 +21,50 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-</RelativeLayout>
+</RelativeLayout>-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_day"
+    tools:context=".ui.sop.SopFragment">
+
+    <!--progress bar for loading indicator-->
+
+    <ProgressBar
+        android:id="@+id/idPB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/msg_sop"
+        android:layout_width="357dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_message"
+        android:drawablePadding="14dp"
+        android:text="Возможность оценки доступна определенное время, следите за таймером."
+        android:textAlignment="textStart"
+        android:textColor="@color/basic_text_day"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
