@@ -3,31 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_navigation_graph"
-    app:startDestination="@id/navigation_sop">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="mobile.system.ui.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_sop"
         android:name="mobile.system.ui.sop.SopFragment"
-        android:label="fragment_sop"
+        android:label="@string/title_SOP"
         tools:layout="@layout/fragment_sop" />
     <fragment
         android:id="@+id/navigation_profile"
         android:name="mobile.system.ui.profile.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/navigation_schedule"
         android:name="mobile.system.ui.schedule.ScheduleFragment"
-        android:label="fragment_schedule"
+        android:label="@string/title_schedule"
         tools:layout="@layout/fragment_schedule" />
     <fragment
         android:id="@+id/navigation_attendance"
         android:name="mobile.system.ui.attendance.AttendanceFragment"
-        android:label="fragment_attendance"
+        android:label="@string/title_attendance"
         tools:layout="@layout/fragment_attendance" />
 </navigation>

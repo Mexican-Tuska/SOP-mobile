@@ -19,12 +19,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Log.d("LOGIN_ACTIVITY", "setContentView");
 
-        Button button_login = findViewById(R.id.button_login);
+        Button button_login = findViewById(R.id.signup_button);
         Button button_register = findViewById(R.id.button_register);
-        Log.d("LOGIN_ACTIVITY", "findViewById: button_login/button_register");
+        //View url_main_page = findViewById(R.id.url_main_page); //??????
+        //Log.d("LOGIN_ACTIVITY", "findViewById: button_login/button_register");
+        Log.d("LOGIN_ACTIVITY", "findViewById: button_login/url_main_page");
 
         button_login.setOnClickListener(clickListener);
         button_register.setOnClickListener(clickListener);
+        //url_main_page.setOnClickListener(clickListener);
         Log.d("LOGIN_ACTIVITY", "setOnClickListener");
     }
 
@@ -36,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
             switch (button.getId())
             {
-                case R.id.button_login:
+                case R.id.signup_button:
                     // процесс авторизации
                     // ...
                     // успешная авторизация

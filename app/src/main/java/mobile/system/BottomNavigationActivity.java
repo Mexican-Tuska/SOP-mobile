@@ -24,8 +24,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_sop,
                 R.id.navigation_schedule,
-                R.id.navigation_attendance,
                 R.id.navigation_home,
+                R.id.navigation_attendance,
                 R.id.navigation_profile)
                 .build();
 

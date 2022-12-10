@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +8,71 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="3"
+        android:text="4"
         android:textSize="180sp" />
 
-</FrameLayout>
+</FrameLayout>-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ui.attendance.AttendanceFragment"
+android:background="@drawable/back_day">
+
+<TextView
+    android:id="@+id/text_attendance"
+    android:layout_width="352dp"
+    android:layout_height="238dp"
+    android:layout_marginStart="38dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="38dp"
+    android:background="@drawable/rounded_corner"
+    android:text="Количество посещенных занятий (СЕМЕСТР)"
+    android:textAlignment="center"
+    android:textColor="@color/basic_text_day"
+    android:textSize="18sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.352"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/show_button" />
+
+<Button
+    android:id="@+id/show_button"
+    android:layout_width="107dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="32dp"
+    android:background="@drawable/button"
+    android:text="Показать"
+    android:textAllCaps="false"
+    android:textColor="@color/basic_text_day"
+    android:textSize="14sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<TextView
+    android:id="@+id/text_semestr"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="28dp"
+    android:layout_marginTop="30dp"
+    android:text="Семестр:"
+    android:textColor="@color/basic_text_day"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toStartOf="@+id/selecte"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<TextView
+    android:id="@+id/selecte"
+    android:layout_width="166dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/rounded_corner"
+    android:textColor="@color/basic_text_day"
+    app:layout_constraintEnd_toStartOf="@+id/show_button"
+    app:layout_constraintHorizontal_bias="0.066"
+    app:layout_constraintStart_toEndOf="@+id/text_semestr"
+    app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
