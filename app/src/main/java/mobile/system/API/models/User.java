@@ -6,6 +6,7 @@ public class User {
     public String surname;
     public String name;
     public String lastname;
+    public String password;
 
     public User(int id, String email, String surname, String name, String lastname)
     {
@@ -14,5 +15,14 @@ public class User {
         this.surname = surname;
         this.name = name;
         this.lastname = lastname;
+    }
+    public User(int id, String email, String surname, String name, String lastname, String password)
+    {
+        this.id = id;
+        this.email = email;
+        this.surname = surname;
+        this.name = name;
+        this.lastname = lastname;
+        this.password = password;
     }
 }
