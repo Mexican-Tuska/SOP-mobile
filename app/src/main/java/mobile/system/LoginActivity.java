@@ -30,20 +30,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
-import mobile.system.API.models.Criterion;
-import mobile.system.API.models.Grade;
-import mobile.system.API.models.Group;
-import mobile.system.API.models.Subject;
-import mobile.system.API.models.Subject_Group;
-import mobile.system.API.models.Teacher;
-import mobile.system.API.models.Teacher_Subject;
 import mobile.system.API.models.User;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "SAREST_MAIN_ACTIVITY";
 
-    /*private RequestQueue mRequestQueue;*/
+    private RequestQueue mRequestQueue;
 
     private List<User> mUserList;
     EditText mEmail;
@@ -57,8 +50,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Log.d("LOGIN_ACTIVITY", "setContentView");
 
+        mRequestQueue = Volley.newRequestQueue(LoginActivity.this);
+
         Button button_login = findViewById(R.id.signup_button);
         Button button_register = findViewById(R.id.button_register);
+
+        mEmail = (EditText)findViewById(R.id.email_main_page);
+        mPass = (EditText)findViewById(R.id.password_main_page3);
+
         //View url_main_page = findViewById(R.id.url_main_page); //??????
         //Log.d("LOGIN_ACTIVITY", "findViewById: button_login/button_register");
         Log.d("LOGIN_ACTIVITY", "findViewById: button_login/url_main_page");
@@ -67,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
         button_register.setOnClickListener(clickListener);
         //url_main_page.setOnClickListener(clickListener);
         Log.d("LOGIN_ACTIVITY", "setOnClickListener");
-
     }
 
     View.OnClickListener clickListener = new View.OnClickListener() {
@@ -75,9 +73,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Button button = (Button)v;
-            mEmail = (EditText)findViewById(R.id.email_main_page);
-            mPass = (EditText)findViewById(R.id.password_main_page3);
-
             switch (button.getId())
             {
                 case R.id.signup_button:
@@ -86,37 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                     // успешная авторизация
                     //mRequestQueue = Volley.newRequestQueue(LoginActivity.this);
                     parseJSON();
-
-
-                    String email = mEmail.getText().toString();
-                    String password = mPass.getText().toString();
-
-                    for (User usr : mUserList) {
-                        if (usr.email == email)
-                        {
-                            try {
-                                String passwordSHA = toHexString(getSHA(password));
-                                if (passwordSHA == usr.password)
-                                {
-                                    // запуск активити с bottom navigation menu
-                                    Intent intent = new Intent(LoginActivity.this, BottomNavigationActivity.class);
-                                    startActivity(intent);
-                                    break;
-                                }
-                                else
-                                {
-                                    Toast.makeText(LoginActivity.this, "Incorrect password!", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
-                            }
-                            catch (NoSuchAlgorithmException e)
-                            {
-                                Log.d(LOG_TAG, "Exception thrown for incorrect algorithm: " + e);
-                                return;
-                            }
-                        }
-                    }
-
                     break;
 
                 case R.id.button_register:
@@ -127,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     };
+
     public byte[] getSHA(String input) throws NoSuchAlgorithmException
     {
         // Static getInstance method is called with hashing SHA
@@ -156,50 +121,73 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void parseJSON() {
-        String[] urls = {
-                "user_list"
-        };
-
         String IP = "10.0.2.2";
         String port = "8000";
 
-        for (String url : urls) {
-            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://" + IP + ":" + port + "/api/v1/" + url, null,
-                    new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            try {
-                                if (mUserList == null)
-                                    mUserList = new ArrayList<>();
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://" + IP + ":" + port + "/api/v1/user_list", null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        if (mUserList == null)
+                            mUserList = new ArrayList<>();
 
-                                for (int i = 0; i < response.length(); i++) {
-                                    JSONObject json = null;
-                                    json = response.getJSONObject(i);
-                                    int userId = json.getInt("id");
-                                    String email = json.getString("email");
-                                    String surname = json.getString("surname");
-                                    String name = json.getString("name");
-                                    String lastname = json.getString("lastname");
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject json = null;
+                                json = response.getJSONObject(i);
+                                int userId = json.getInt("id");
+                                String email = json.getString("email");
+                                String surname = json.getString("surname");
+                                String name = json.getString("name");
+                                String lastname = json.getString("lastname");
+                                String password = json.getString("password");
 
-                                    mUserList.add(new User(userId, email, surname, name, lastname));
+                                mUserList.add(new User(userId, email, surname, name, lastname, password));
 
-                                    String msg = "email: " + email + " surname: " + surname + " name: " + name + " lastname: " + lastname;
-                                    Log.i(LOG_TAG, "[user_list]: " + msg);
+                                String msg = "email: " + email + " surname: " + surname + " name: " + name + " lastname: " + lastname;
+                                Log.i(LOG_TAG, "[user_list]: " + msg);
+                            }
+
+                            String email = mEmail.getText().toString();
+                            String password = mPass.getText().toString();
+
+                            for (User usr : mUserList) {
+                                if (usr.email.equals(email))
+                                {
+                                    try {
+                                        String passwordSHA = toHexString(getSHA(password));
+                                        if (passwordSHA.equals(usr.password))
+                                        {
+                                            // запуск активити с bottom navigation menu
+                                            Intent intent = new Intent(LoginActivity.this, BottomNavigationActivity.class);
+                                            startActivity(intent);
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(LoginActivity.this, "Incorrect password!", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                    }
+                                    catch (NoSuchAlgorithmException e)
+                                    {
+                                        Log.d(LOG_TAG, "Exception thrown for incorrect algorithm: " + e);
+                                        return;
+                                    }
                                 }
                             }
-                            catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e(LOG_TAG, error.getMessage());
-                        }
-                    });
-            RequestQueue mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-            mRequestQueue.add(jsonArrayRequest);
-        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(LOG_TAG, error.getMessage());
+                    }
+                });
+
+        mRequestQueue.add(jsonArrayRequest);
     }
 }
