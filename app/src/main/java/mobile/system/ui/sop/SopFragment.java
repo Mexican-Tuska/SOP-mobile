@@ -93,6 +93,7 @@ public class SopFragment extends Fragment {
 
         mRecyclerView.setAdapter(mCardsAdapter);
     }
+
     private void parseJSON() {
         String[] urls = {
                 "user_list",
@@ -285,6 +286,7 @@ public class SopFragment extends Fragment {
             mRequestQueue.add(jsonArrayRequest);
         }
     }
+
     protected void getCards() {
         // ФИО препода, дисциплина и рейтинг
 
