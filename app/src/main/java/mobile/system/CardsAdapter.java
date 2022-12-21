@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,7 +43,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHol
 
         holder.mFIO.setText(FIO);
         holder.mSubject.setText(Subject);
-        holder.mScore.setText(String.valueOf(score));
+        holder.mRatingBar.setRating(score);
 //        holder.mTextViewLikes.setText("Likes: " + likeCount);
 //        Picasso.with(mContext).load(imageUrl).fit().centerInside().into(holder.mImageView);
     }
@@ -57,7 +58,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHol
 //        public TextView mTextViewCreator;
         public TextView mFIO;
         public TextView mSubject;
-        public TextView mScore;
+        public RatingBar mRatingBar;
 
         public CardsViewHolder(View itemView) {
             super(itemView);
@@ -66,7 +67,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.CardsViewHol
 //            mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
             mFIO = itemView.findViewById(R.id.card_FIO);
             mSubject = itemView.findViewById(R.id.card_predmet);
-            mScore = itemView.findViewById(R.id.card_score);
+            mRatingBar = itemView.findViewById(R.id.stars_score);
         }
     }
 
