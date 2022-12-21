@@ -3,7 +3,6 @@ package mobile.system;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,18 +15,23 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.math.BigInteger;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.SocketTimeoutException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 
 import mobile.system.API.models.User;
@@ -36,8 +40,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "SAREST_MAIN_ACTIVITY";
 
-    private RequestQueue mRequestQueue;
+    RequestQueue queue;
+    JSONObject credentials;
 
+    boolean ResponseCode;
     private List<User> mUserList;
     EditText mEmail;
     EditText mPass;
@@ -50,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Log.d("LOGIN_ACTIVITY", "setContentView");
 
-        mRequestQueue = Volley.newRequestQueue(LoginActivity.this);
+        queue = Volley.newRequestQueue(LoginActivity.this);
 
         Button button_login = findViewById(R.id.signup_button);
         Button button_register = findViewById(R.id.button_register);
@@ -80,8 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     // ...
                     // успешная авторизация
                     //mRequestQueue = Volley.newRequestQueue(LoginActivity.this);
-                    parseJSON();
-                    break;
+                    getResponse(mEmail.getText().toString(), mPass.getText().toString());
 
                 case R.id.button_register:
                     // процесс регистрации
@@ -120,74 +125,100 @@ public class LoginActivity extends AppCompatActivity {
         return hexString.toString();
     }
 
-    private void parseJSON() {
+    private void getResponse(String email, String password) {
         String IP = "10.0.2.2";
         String port = "8000";
+        final int[] StatusCode = new int[1];
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "http://" + IP + ":" + port + "/api/v1/user_list", null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        if (mUserList == null)
-                            mUserList = new ArrayList<>();
+        try {
 
-                        try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject json = null;
-                                json = response.getJSONObject(i);
-                                int userId = json.getInt("id");
-                                String email = json.getString("email");
-                                String surname = json.getString("surname");
-                                String name = json.getString("name");
-                                String lastname = json.getString("lastname");
-                                String password = json.getString("password");
+            //ConnectionThread con = new ConnectionThread(IP, port);
+            //con.start();
+            // Get the CSRF token from the cookie
+            //String csrf_token = con.getCsrfToken();
+            //csrf_token = csrf_token.substring(10, csrf_token.indexOf(';'));
 
-                                mUserList.add(new User(userId, email, surname, name, lastname, password));
+            // Now you can include the CSRF token in the JSON request
+            JSONObject credentials = new JSONObject();
+            //credentials.put("csrfmiddlewaretoken", csrf_token);
+            credentials.put("email", email);
+            credentials.put("password", password);
 
-                                String msg = "email: " + email + " surname: " + surname + " name: " + name + " lastname: " + lastname;
-                                Log.i(LOG_TAG, "[user_list]: " + msg);
-                            }
-
-                            String email = mEmail.getText().toString();
-                            String password = mPass.getText().toString();
-
-                            for (User usr : mUserList) {
-                                if (usr.email.equals(email))
-                                {
-                                    try {
-                                        String passwordSHA = toHexString(getSHA(password));
-                                        if (passwordSHA.equals(usr.password))
-                                        {
-                                            // запуск активити с bottom navigation menu
-                                            Intent intent = new Intent(LoginActivity.this, BottomNavigationActivity.class);
-                                            startActivity(intent);
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            Toast.makeText(LoginActivity.this, "Incorrect password!", Toast.LENGTH_SHORT).show();
-                                            return;
-                                        }
-                                    }
-                                    catch (NoSuchAlgorithmException e)
-                                    {
-                                        Log.d(LOG_TAG, "Exception thrown for incorrect algorithm: " + e);
-                                        return;
-                                    }
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, "http://" + IP + ":" + port, credentials,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                // Check the response status code
+                                boolean statusCode = response.getBoolean("success");
+                                if (statusCode == true) {
+                                    // Authentication was successful
+                                    // You can now parse the rest of the response to get the data you need
+                                    //String data = response.getString("data");
+                                    Intent intent = new Intent(LoginActivity.this, BottomNavigationActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    // Authentication failed
+                                    // You can handle the error here
+                                    //String errorMessage = response.getString("error");
+                                    Toast.makeText(LoginActivity.this, "Incorrect login or password!", Toast.LENGTH_SHORT).show();
                                 }
+                            } catch (JSONException e) {
+                                // Handle any JSON parsing errors
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // Handle any errors that may have occurred
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e(LOG_TAG, error.getMessage());
-                    }
-                });
+            );
 
-        mRequestQueue.add(jsonArrayRequest);
+            // Add the request to the RequestQueue to send it to the server
+            queue.add(request);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class ConnectionThread extends Thread { // Сделать подключение в новом покотке
+    private String csrfToken;
+    private String IP;
+    private String port;
+
+    ConnectionThread(String IP, String port)
+    {
+        this.IP = IP;
+        this.port = port;
+    }
+
+    public String getCsrfToken() {
+        return this.csrfToken;
+    }
+
+    @Override
+    public void run() {
+        try {
+            URL url = new URL("http://" + this.IP + ":" + this.port);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect(); // smth w\ this shit
+
+            this.csrfToken = connection.getHeaderField("Set-Cookie");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (ConnectException e) {
+            e.printStackTrace();
+        } catch (SocketTimeoutException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Update the UI with the result
     }
 }
