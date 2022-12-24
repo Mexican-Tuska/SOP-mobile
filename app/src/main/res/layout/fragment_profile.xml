@@ -63,5 +63,4 @@
             android:textColor="@color/basic_text_day"
             android:textSize="18sp" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

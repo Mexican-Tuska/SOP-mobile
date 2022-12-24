@@ -19,7 +19,6 @@
     <string name="question_main_page">Нет аккаунта?</string>
     <string name="url_main_page">Зарегистрируйтесь</string>
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>

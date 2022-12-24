@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pages"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.fuck.screens.home.homeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/attendanceFragment"
+        android:name="com.example.fuck.screens.attendance.attendanceFragment"
+        android:label="fragment_attendance"
+        tools:layout="@layout/fragment_attendance" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.fuck.screens.profile.profileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.example.fuck.screens.schedule.scheduleFragment"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/sopFragment"
+        android:name="com.example.fuck.screens.sop.sopFragment"
+        android:label="fragment_sop"
+        tools:layout="@layout/fragment_sop" />
+</navigation>
