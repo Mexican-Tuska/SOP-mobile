@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="120dp">
+
+    <TextView
+        android:id="@+id/card_predmet"
+        android:text="Это предмет"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/card_FIO"
+        android:text="Это ФИО препода"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/card_score"
+        android:text="Это рейтинг"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+</LinearLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="360dp"
+    android:layout_height="260dp"
+    android:layout_marginTop="100dp"
+    android:layout_marginBottom="-80dp"
+    android:layout_marginStart="25dp"
+    android:background="@color/back_blocks_day"
+    android:backgroundTint="@color/back_blocks_day"
+    android:clickable="true">
+
+        <!--Имя-->
+        <TextView
+            android:id="@+id/card_FIO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Это ФИО препода"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/basic_text_day"
+            android:textSize="16sp" />
+
+        <!--Ава-->
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/gid"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/gid" />
+
+        <!--Предмет-->
+        <TextView
+            android:id="@+id/card_predmet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Это предмет"
+            android:textAlignment="center"
+            android:textColor="@color/basic_text_day" />
+
+        <!--Рейтинг-->
+        <TextView
+            android:id="@+id/card_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="Это рейтинг"
+            android:textAlignment="center"
+            android:textColor="@color/basic_text_day" />
+
+        <!--Звезды-->
+        <RatingBar
+            android:id="@+id/stars_score"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="5dp"
+            android:numStars="5"
+            android:isIndicator="true"
+            android:theme="@style/MyRatingBar" />
+
+    </LinearLayout>

@@ -1,5 +1,15 @@
 <resources>
-    <string name="app_name">fuck</string>
+    <string name="app_name">SOP-Mobile</string>
+    <!-- Strings related to login -->
+
+    <string name="prompt_email">Электронная почта</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Зарегистрироваться</string>
+    <string name="action_sign_in_short">Войти</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Недопустимое имя пользователя</string>
+    <string name="invalid_password">Пароль должен быть больше 5 символов</string>
+    <string name="login_failed">"Авторизация не удалась"</string>
 
     //Страница авторизации
     <string name="title_main_page">Вход</string>
@@ -9,24 +19,10 @@
     <string name="question_main_page">Нет аккаунта?</string>
     <string name="url_main_page">Зарегистрируйтесь</string>
 
-    //1 страница регистрации
-    <string name="title_registration1_page">Регистрация</string>
-    <string name="surname_reg1_page">Фамилия</string>
-    <string name="name_reg1_page">Имя</string>
-    <string name="midname_reg1_page">Отчество</string>
-    <string name="group_reg1_page">Группа</string>
-    <string name="subgroup_reg1_page">Подгруппа</string>
-    <string name="button_reg1_page">Продолжить регистрацию</string>
-    <string name="question_reg1_page">Есть аккаунт?</string>
-    <string name="url_reg1_page">Войдите</string>
-
-    //2 страница регистрации
-    <string name="title_registration2_page">Подтверждение регистрации</string>
-    <string name="ad_registration2_page">Необходимо подтверить свою электронную почту, перейдя по ссылке в полученном письме</string>
-    <string name="password_confirm_reg_page2">Повторите пароль</string>
-    <string name="login_reg2_page">Зарегистрироваться</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 
     //Заголовки страниц
     <string name="title_home">Главная</string>
@@ -35,4 +31,32 @@
     <string name="title_profile">Профиль</string>
     <string name="title_SOP">СОП</string>
 
-</resources>
+    // Vladimir added
+    <string name="action_login">Sign in</string> //кнопка раз
+    <string name="action_register">Register</string> //кнопка два
+
+    // заголовки пунктов меню
+    <string name="menu_sop">СОП</string>
+    <string name="menu_home">Главная</string>
+    <string name="menu_schedule">Расписание</string>
+    <string name="menu_attendance">Посещение</string>
+    <string name="menu_profile">Профиль</string>
+
+    <string name="Gid">TODO</string>
+
+     //Фрагмент главной
+     <string name="week_text">Текущая неделя: 05.09 - 11.09 (#2) Знаменатель</string>
+     <string name="text_schedule_today">Расписание занятий на сегодня</string>
+     <string name="text_addendance">Информация о посещаемости в текущем семестре</string>
+
+     //Фрагмент профиля
+     <string name="gid">TODO</string>
+     <string name="name_profile">Фамилия Имя Отчество</string>
+     <string name="info_pers">Общая информация о пользователе</string>
+     <string name="exit_label">Выйти</string>
+
+     //Фрагмент расписания
+     <string name="schedule_tomorrow">Расписание занятий на завтра</string>
+     <string name="text_schedule">Расписание занятий на первый семестр 2022-2023 учебного года</string>
+
+ </resources>
